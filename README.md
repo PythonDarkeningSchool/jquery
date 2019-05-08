@@ -4,10 +4,10 @@
 
 There is a few ways to get JQuery for use into the HTML
 
-### Download JQuery
+###  Download JQuery
 Go to the following  [link](https://jquery.com/download). Once there you can download the production version or the development version, is highly recommend to download the production version since it weighs less .
 
-###Using a *Content Delivery Network* (CND)
+### Using a *Content Delivery Network* (CND)
 Insert the following lines of code to use with Microsoft CDN
 
 ```html
@@ -38,21 +38,20 @@ e.g:
 ```html
 <head>
   <script type="text/javascript">
-  	$(document).ready(function(){
-  		//Perform some actions
-  	});
+     $(document).ready(function(){
+     //Perform some actions
+     });
   </script>
 </head>
-  
 ```
 
 The following code does the same with only JavaScript code:
 ```html
 <head>
   <script type="text/javascript">
-		window.onload = function(){
-			//Perform some actions
-		};
+     window.onload = function(){
+     //Perform some actions
+     };
   </script>
 </head>
 ```

@@ -6,6 +6,8 @@ There is a few ways to use JQuery into HTML
 
 ### Download JQuery
 
+Go to the following  [link]: https://jquery.com/download
+
 
 
 ###Using a *Content Delivery Network* (CND)
@@ -25,4 +27,3 @@ Or you can insert the following lines to use along with Google CDN
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/[version]/jquery.min.js"></script>
 <head>
 ```
-

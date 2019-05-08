@@ -55,3 +55,45 @@ The following code does the same with only JavaScript code:
   </script>
 </head>
 ```
+
+
+
+## Using JQuery Selectors
+
+### Selector Syntax
+
+```html
+$(selectorExpression)
+```
+
+or
+
+```html
+JQuery(selectorExpression)
+```
+
+### Selecting by Tag Name
+
+```html
+$("p") selects all <p> elements
+$("a") selects all <a> elements
+```
+
+#### Selecting Multiple Tags
+
+To reference multiple tags, use `,` character to separate the elements:
+
+```html
+$("p, a, span") selects all paragraphs, anchorsm and span elements
+```
+
+#### Selecting Descendants
+
+- `$("ancestor descendant")` selects all descendants of the ancestor, e.g:
+
+```html
+$(table tr)
+```
+
+Select all `tr` elements that are descendants of the `table` element
+

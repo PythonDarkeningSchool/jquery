@@ -6,7 +6,7 @@ There is a few ways to use JQuery into HTML
 
 ### Download JQuery
 
-Go to the following  [link]: https://jquery.com/download
+Go to the following  [link](https://jquery.com/download)
 
 
 

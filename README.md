@@ -96,4 +96,3 @@ $(table tr)
 ```
 
 Select all `tr` elements that are descendants of the `table` element
-

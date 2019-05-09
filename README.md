@@ -205,7 +205,7 @@ The above will grab all `span` tags and it only will selected the first-child, e
 
 The tag `<div>` could be any other tag
 
-### Using Starts With in Selectors
+### Using Starts With in Selectors (wildcard)
 
 `[atribute^="value"]` will select all elements with an attribute that begins with stated value:
 
@@ -221,7 +221,7 @@ Selects any input element whose value attributes begins with "Events", e,g:
 <input type="button" value="Events - Local"/>
 ```
 
-### Using Ends With in Selectors
+### Using Ends With in Selectors (wildcard)
 
 `[attribute$="value"]` will select all elements with an attribute that ends with stated value:
 
@@ -236,4 +236,22 @@ Selects any input element whose value attribute ends with "Events", e.g:
 <input type="button" value="National Events"/>
 <input type="button" value="Local Events"/>
 ```
+
+### Find Attributes Containing a Value (wildcard)
+
+`[attribute*="value"]` will select all elements with an attribute that contain the state value:
+
+```html
+$('input[value*="Events"]')
+```
+
+Selects any input element whose value attribute contains "Events", e.g:
+
+```html
+<input type="button" value="World Events 2011"/>
+<input type="button" value="National Events 2011"/>
+<input type="button" value="Local Events 2011"/>
+```
+
+
 

@@ -253,5 +253,6 @@ Selects any input element whose value attribute contains "Events", e.g:
 <input type="button" value="Local Events 2011"/>
 ```
 
+### Useful JQuery webpage
 
-
+[JQuery Selectors](http://codylindley.com/jqueryselectors/)

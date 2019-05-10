@@ -8,7 +8,7 @@ There is a few ways to get JQuery for use into the HTML
 Go to the following  [link](https://jquery.com/download). Once there you can download the production version or the development version, is highly recommend to download the production version since it weighs less .
 
 ### Using a *Content Delivery Network* (CND)
-Insert the following lines of code to use with Microsoft CDN
+Insert the following lines of code to use with *Microsoft CDN*
 
 ```html
 <head>
@@ -16,13 +16,19 @@ Insert the following lines of code to use with Microsoft CDN
 <head>
 ```
 
-Or you can insert the following lines to use along with Google CDN
+Or you can insert the following lines to use along with *Google CDN*
 
 ```html
 <head>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/[version]/jquery.min.js"></script>
 <head>
 ```
+References:
+
+- [Google Libraries](https://developers.google.com/speed/libraries)
+
+  
+
 ## Using JQuery ready() function
 
 Detecting when a page has loaded
@@ -62,13 +68,13 @@ The following code does the same with only JavaScript code:
 
 ### Selector Syntax
 
-```html
+```javascript
 $(selectorExpression)
 ```
 
 or
 
-```html
+```javascript
 JQuery(selectorExpression)
 ```
 
@@ -91,7 +97,7 @@ $("p, a, span") selects all paragraphs, anchorsm and span elements
 
 - `$("ancestor descendant")` selects all descendants of the ancestor, e.g:
 
-```html
+```javascript
 $(table tr)
 ```
 
@@ -101,7 +107,7 @@ Select all `tr` elements that are descendants of the `table` element
 
 Use the `#` character to select elements by ID:
 
-```html
+```javascript
 $("#myID")
 ```
 
@@ -109,7 +115,7 @@ $("#myID")
 
 Use the `.` character to select elements by class name:
 
-```html
+```javascript
 $(".myClass")
 ```
 
@@ -117,7 +123,7 @@ $(".myClass")
 
 To reference multiple tags, use the `,` character to separate the class names:
 
-```html
+```javascript
 $(".myClass, .myOtherClass")
 ```
 
@@ -125,7 +131,7 @@ $(".myClass, .myOtherClass")
 
 You can caimbine this with element names as well:
 
-```html
+```javascript
 $("a.myClass")
 ```
 
@@ -135,13 +141,13 @@ selects only `<a>` tags with `class="myClass"`
 
 Use brackets `[attribute]` to select based on attribute name and/or attribute value:
 
-```html
+```javascript
 $("a[title]")
 ```
 
 select all `<a>` elements that have a title attribute, e.g:
 
-```html
+```javascript
 $('a[title="programmingInfo"]')
 ```
 
@@ -160,7 +166,7 @@ Select all `anchor` elements that have a "programmingInfo" title attribute value
 
 and more, e.g: 
 
-```html
+```javascript
 $(':input[type="radio"]')
 ```
 
@@ -170,7 +176,7 @@ target all radio buttons on the page
 
 `:contains()` will select elements that match the contents within the contains exception:
 
-```html
+```javascript
 $('div:contains("pluralsight")')
 ```
 
@@ -186,7 +192,7 @@ e.g:
 
 `$('element:first-child')` selects the first child of every element group:
 
-```html
+```javascript
 $('span:first-child')
 ```
 
@@ -209,7 +215,7 @@ The tag `<div>` could be any other tag
 
 `[atribute^="value"]` will select all elements with an attribute that begins with stated value:
 
-```html
+```javascript
 $('input[value^="Events"]')
 ```
 
@@ -225,7 +231,7 @@ Selects any input element whose value attributes begins with "Events", e,g:
 
 `[attribute$="value"]` will select all elements with an attribute that ends with stated value:
 
-```html
+```javascript
 $('input[value$="Events"]')
 ```
 
@@ -241,7 +247,7 @@ Selects any input element whose value attribute ends with "Events", e.g:
 
 `[attribute*="value"]` will select all elements with an attribute that contain the state value:
 
-```html
+```javascript
 $('input[value*="Events"]')
 ```
 
@@ -255,4 +261,113 @@ Selects any input element whose value attribute contains "Events", e.g:
 
 ### Useful JQuery webpage
 
-[JQuery Selectors](http://codylindley.com/jqueryselectors/)
+[JQuery Selectors](http://codylindley.com/jqueryselectors)
+
+## Interacting with the DOM
+
+`DOM` stands for "Document Object Model"
+
+### Iterating Through Nodes
+
+`.each(function(index, element))` is used to iterate through JQuery objects, e.g:
+
+```javascript
+$('div').each(function(index){
+  alert(index + "=" `$(this).text());
+});
+```
+
+> where
+>
+> - `function()` => it is an anonymous function
+> - `$('div')` => it is a JQuery selector to grab all division and it returns an JQuery object
+> - `index` => the index of the current object
+> - `$(this)` => it makes reference to the current object
+> - `element` => if you add it in function parameters, it makes reference to the current object, in other words "Element = $(this)"
+
+Example using `element` as parameter function:
+
+```javascript
+$('div').each(function(index, element){
+  alert(index + "=" `$(element).text());
+});
+```
+
+#### Demo
+
+```html
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="divisionA">Division A</div>
+    <div class="divisionB">Division B</div>
+    <div id="outputDivision"></div>
+    
+    <script type="application/javascript">
+      let html = '';
+      $('div.divisionA, div.divisionB').each(function(index){
+        html += "<br> index(" + index + ") <=> " + $(this).text();
+      });
+      let output = $('#outputDivision');
+      output.html(html);
+    </script>
+  </body>
+</html>
+```
+
+### Modifying Object Properties
+
+The `this.propertyName` statement can be used to modify an object's properties directly:
+
+```javascript
+$('div').each(function(index){
+  this.title = "My index: " + index
+});
+```
+
+> Where:
+>
+> - `this` => keyword represent the raw DOM object
+> - `title` => propierty of raw DOM object
+
+The above code iterates through each div and modifies the title. If the property does not exists, it will be added
+
+### Accessing Attributes
+
+Object attributes can be acceded using `attr()`:
+
+```
+let val = $('#CustomerDiv').attr('title');
+```
+
+retrieves the value of the title attribute
+
+### Modifying Attributes
+
+#### Modifying a single attribute
+
+`.attr(attributeName, value)` is the method used to access an object's attributes and modify the value:
+
+```javascript
+$('img').attr('title', 'My image title')
+```
+
+Changes the title attribute to the value of my image title, *for all images in the html*
+
+#### Modifying Multiple Attributes
+
+To modify multiple attributes, pass a JSON object containing name/values pairs:
+
+```javascript
+$('img').attr({
+  title: 'My image title',
+  style: 'border:2px solid black'
+});
+```
+
+JSON object passed and used to change title and border
+

@@ -29,6 +29,38 @@ References:
 
   
 
+## Using JQuery Wrapper Object
+
+JQuery wrapper object
+
+```javascript
+$('DOMObject')
+```
+
+Using the JQuery Wrapper Object you can access to JQuery [API](https://api.jquery.com):
+
+```javascript
+$(this).attr('attributeName')
+```
+
+
+
+## Using JQuery Raw Object
+
+JQuery Raw Object
+
+```javascript
+this
+```
+
+The main difference beetwen using the `raw object` is that here you can access to JQuery [API](https://api.jquery.com):
+
+```
+this.attr('attributeName')
+```
+
+This is wrong
+
 ## Using JQuery ready() function
 
 Detecting when a page has loaded
@@ -370,4 +402,260 @@ $('img').attr({
 ```
 
 JSON object passed and used to change title and border
+
+### Appending to Nodes
+
+#### appendTo
+
+Appending adds children at the end of the matching element:
+
+```javascript
+$('<span>(Office)</span>').appendTo('.officePhone');
+```
+
+Or
+
+```javascript
+$('.officePhone').appendTo('<span>(Office)</span>');
+```
+
+Would result in `(office)` being added into each `.officePhone` class element
+
+#### prependTo
+
+> it has the same effect than `appendTo`
+
+Prepending adds children at the beginning of the matching element:
+
+```javascript
+$('<span>Phone:</span>').prependTo('.phone');
+```
+
+Or
+
+```javascript
+$('.phone').prepend('<span>Phone:</span>');
+```
+
+would result in `Phone:` being added into each `.phone` class element
+
+### Wrapping Elements
+
+The following HTML and `.wrap()` function:
+
+``` html
+<div class="state">Arizona</div>
+```
+
+```javascript
+$('.state').wrap('<div class="US_State"/>')
+```
+
+> Notice that inside the `wrap` function the div is closed, this is a short way to avoid write "</div> tag
+
+Results in:
+
+```html
+<div class="US_State">
+  <div class="state">Arizona</div>
+</div>
+```
+
+### Removing Nodes
+
+`.remove()` will remove matched elements from the DOM:
+
+```javascript
+$('.phone, .location').remove()
+```
+
+will result in objects with `.phone` or `.location` classes being removed from the DOM
+
+Taking courses in pluralsight
+
+### Modifying Styles
+
+The `.css` function can be used to modify an object`s style:
+
+```javascript
+$('div').css('color', 'red')
+```
+
+#### Modifying Multiples Styles
+
+Multiple Styles can be modified by passing a JSON object:
+
+```javascript
+$('div').css({
+ 'color': '#FFFFF',
+ 'font-weight': 'bold'
+});
+```
+
+### Modifying CSS Classes
+
+The four methods for working with CSS Class attributes are:
+
+- `.addClass()`
+- `.hasClass()`
+- `.removeClass()`
+- `.toggleClass()`
+
+#### `.addClass()`
+
+`.addClass()` add one or more class names to the class attribute of each matched element:
+
+```javascript
+$('p').addClass('classOne')
+```
+
+More than one class:
+
+```javascript
+$('p').addClass('classOne classTwo')
+```
+
+#### `.hasClass()`
+
+`.hasClass()` return true if the selected element has a matching class that is specified:
+
+```javascript
+if($('p'.hasClass('specificStyle')){
+ // perform some action  
+}
+```
+
+#### `.removeClass()`
+
+`.removeClass()` can remove one or more classes:
+
+```javascript
+$('p').removeClass('classOne classTwo');
+```
+
+remove all class attributes for the matching selector:
+
+```javascript
+$('p').removeClass();
+```
+
+#### `.toggleClass()`
+
+`.toggleClass()` alternates adding or removing a class based on the current presence or absence of the class:
+
+```
+$('#PhoneDetails').toggleClass('highlight');
+```
+
+in the id `#PhoneDetails` has the class "highlight" this function will be remove it, otherwise it will be added
+
+## Handling Events
+
+### Click Events
+
+`.click(handler(eventObject))` is used to listen for a click event or trigger a click event on a element:
+
+```javascript
+$('#myID').click(function(){
+  alert('some alert');
+});
+```
+
+raising a click event from within another function:
+
+```javascript
+$('#otherID').click(function(){
+  $('#myID').click();
+});
+```
+
+this would fire when the element `#otherID` was clicked and raise the click event for `#myID`
+
+a real example could be:
+
+```javascript
+$('document').ready(function(){
+  triggerEvents();
+});
+
+function triggerEvents(){
+  $('#submitButton').click(function(){
+    // Perform some test
+  });
+}
+```
+
+### Change events
+
+`.change(hander(eventObject))` is used to listen for a change state in the element:
+
+```javascript
+$('#myID').change(function(){
+  alert('some alert');
+});
+```
+
+for example, grab the event of an `id` when the textbox value changes
+
+### Mouse Events
+
+`.mouseenter(hander(eventObject))` is used to listen when the cursor is over the element:
+
+```javascript
+$('#myDiv').mouseenter(function(){
+  // Perfom some action
+});
+```
+
+another example of mouse events:
+
+```javascript
+$('#myDiv').mouseenter(function(){
+  // Perfom some action
+}).mouseleave(function(){
+  // Perform some action
+});
+```
+
+You can nested several events into the same JQuery object, to know more mouse events please visit the JQuery [API](https://api.jquery.com/category/events/mouse-events)
+
+### Binding to Events
+
+The core of JQuery functions is call `on`, it was added in JQuery 1.7 and is the reccommend approach to use
+
+#### Using `on()`
+
+`on(eventType, handler(eventObject))` attaches a handler to an event for the seleted element(s):
+
+```javascript
+$('#myDiv').on('click', function(){
+  // Handle click event
+});
+```
+
+#### Using `off()`
+
+`off(event)` is used to remove a handler previously bound to an element:
+
+```javascript
+$('#test').click(handler); // can be unbound using
+$('#test').off(); // will remove all events related
+```
+
+To remove specific events:
+
+```javascript
+$('#test').off('click')
+```
+
+#### Binding Multiple Events with `on()`
+
+- `on()` allows multiple events to be bound to one or more elements
+- Event names to bind are separated with a space:
+
+```javascript
+$('#myDiv').on('mouseenter mouseleave', function(){
+  $('this').tooggleClass('entered');
+});
+```
 

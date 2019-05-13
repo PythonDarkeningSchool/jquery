@@ -549,6 +549,8 @@ $('#PhoneDetails').toggleClass('highlight');
 
 in the id `#PhoneDetails` has the class "highlight" this function will be remove it, otherwise it will be added
 
+It can be used to highlight some objects on click event for example buttons when they are pressed
+
 ## Handling Events
 
 ### Click Events
@@ -633,6 +635,35 @@ $('#myDiv').on('click', function(){
 });
 ```
 
+##### Using with Child Objects
+
+Using `on()` function with a data in a table
+
+```javascript
+$('#myTable tbody').on('click', 'tr', function(){
+  alert('row was clicked and bubbled up');
+});
+```
+
+> `tr` is a descendent from `tbody`
+
+##### Using with a Map
+
+Multiple events and hanldlers can be defined in `on()` using a "map" (*json object*):
+
+```javascript
+$('#myTable tr').on({
+  mouseenter: function(){
+    $(this).addClass("over");
+  },
+  mouseleave: function(){
+    $(this).removeClass("out");
+  }
+})
+```
+
+
+
 #### Using `off()`
 
 `off(event)` is used to remove a handler previously bound to an element:
@@ -659,3 +690,37 @@ $('#myDiv').on('mouseenter mouseleave', function(){
 });
 ```
 
+### Handling Hover Events
+
+Hover events can be handled using `hover()`:
+
+```javascript
+$('selector').hover(handlerIn, handlerOut)
+```
+
+`handlerIn` is equivalent to *mouseenter* and `handlerOut` is equivalent to *mouseleave*
+
+The following example highlights `#target` on mouseenter and set it back to white on mouseleave
+
+```javascript
+$('#target').hover(
+  function(){
+    $(this).css('background-color', '#00FF99');
+  },
+  function(){
+    $(this).css('background-color', '#FFFFFF');
+  }
+);
+```
+
+#### Alternate Hover Example
+
+- Another option is `$(selector).hover(handlerInOut)`
+- Fires the same handler for mouseenter and mouse leave events
+- Use with JQuery´s toggle methods:
+
+```javascript
+$('p').hover(function(){
+  $(this).toggleClass('over');
+});
+```

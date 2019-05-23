@@ -724,3 +724,125 @@ $('p').hover(function(){
   $(this).toggleClass('over');
 });
 ```
+
+
+
+## Working with Ajax Features
+
+### Loading HTML Content from the Web
+
+#### Using `load()`
+
+`$(selector).load(url, data, callback)` allow HTML content to be loaded from a server and added into a DOM object:
+
+```javascript
+$(document).ready(function(){
+  $('#helpButton').click(function(){
+    $('#myDiv').load('helpDetails.html');
+  });
+});
+```
+
+#### Using `load()` With a Selector
+
+A selector can be added after the URL to filter the content that is returned from a calling `load()`
+
+```javascript
+$('#myDiv').load('helpDetails.html #someDiv');
+```
+
+#### Using `load()` With a Callback Function
+
+`load()` can be passed a callback function:
+
+```javascript
+$('#outputDiv').load('notFound.html',function(response, status, xhr){
+  if(status == 'error'){
+    alert(xhr.statusText);
+  }
+});
+```
+
+> - response: the data comming back
+> - xhr: means `xml http requests` and have details about the error
+
+### Making GET Requests
+
+#### Using `get()`
+
+- `get()` it is a global function
+
+`$.get(url, data, callback, datatype)` can retrieve data from a server:
+
+```javascript
+$.get('HelpDetails.html', function(data){
+  $('#outputDiv').html(data);
+});
+```
+
+The above example uses only *url* and *callback* function, `get()` function uses **ajax** behind scenes
+
+example (**using get funcion to grab a entire html webpage into a variable to be able for DOM manipulation**):
+
+```javascript
+$('#MyButton').click(function(){
+  $.get('someWebPage.html', function(data){
+    $('#outputDiv').html(data);
+  });
+});
+```
+
+#### Using `getJSON()`
+
+`$.getJSON(url, data, callback)` can retrieve data from a server:
+
+```javascript
+$.getJSON('customerJson.aspx', {id: 1}, function(data){
+  alert(data.FirstName + data.LastName);
+});
+```
+
+### Making POST Requests
+
+#### Using `post()`
+
+- `post()` it is a global function
+
+`$.post(url, data, callback, datatype)` can retrieve data from a server:
+
+```javascript
+$.post('HelpDetails.html', function(data){
+  $('#outputDiv').html(data);
+});
+```
+
+### The `ajax()` function
+
+> `ajax()` is a global function of JQuery
+
+The `ajax()` function provides extra control over making Ajax calls to a server
+
+- Configure using JSON properties:
+  - contentType
+  - data
+  - dataType
+  - error
+  - sucess
+  - type (GET or POST)
+
+The `ajax()` function is configured by assigning values to JSON propierties:
+
+```javascript
+$.ajax({
+  url: 'someURL',
+  data: someJSONObject,
+  dataType: 'json', // the data type returned from the server
+  sucess: function(data, status, xhr){
+    alert('Insert status: ' + data.d.Status + data.d.Message); // Accesing to the JSON object by property name
+  },
+  error: function(xhr, status, error){
+   alert('Error occurred: ' + status); 
+  }
+});
+```
+

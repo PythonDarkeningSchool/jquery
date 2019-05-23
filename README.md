@@ -70,7 +70,7 @@
 
 
 
-# JQuery
+# JQuery Fundamentals
 
 ## Getting Starting with JQuery
 

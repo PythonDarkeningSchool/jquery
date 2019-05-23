@@ -377,7 +377,7 @@ Selects any input element whose value attribute contains "Events", e.g:
 
 ```javascript
 $('div').each(function(index){
-  alert(index + "=" `$(this).text());
+  alert(index + "=" + $(this).text());
 });
 ```
 
@@ -393,7 +393,7 @@ Example using `element` as parameter function:
 
 ```javascript
 $('div').each(function(index, element){
-  alert(index + "=" `$(element).text());
+  alert(index + "=" + $(element).text());
 });
 ```
 
@@ -479,7 +479,7 @@ JSON object passed and used to change title and border
 
 #### appendTo
 
-Appending adds children at the end of the matching element:
+Appending adds children at the **end of the matching element**:
 
 ```javascript
 $('<span>(Office)</span>').appendTo('.officePhone');
@@ -497,7 +497,7 @@ Would result in `(office)` being added into each `.officePhone` class element
 
 > it has the same effect than `appendTo`
 
-Prepending adds children at the beginning of the matching element:
+Prepending adds children **at the beginning of the matching element**:
 
 ```javascript
 $('<span>Phone:</span>').prependTo('.phone');
@@ -542,8 +542,6 @@ $('.phone, .location').remove()
 ```
 
 will result in objects with `.phone` or `.location` classes being removed from the DOM
-
-Taking courses in pluralsight
 
 ### Modifying Styles
 
@@ -613,7 +611,7 @@ $('p').removeClass();
 
 #### `.toggleClass()`
 
-`.toggleClass()` alternates adding or removing a class based on the current presence or absence of the class:
+`.toggleClass()` **alternates adding or removing a class** based on the current presence or absence of the class:
 
 ```
 $('#PhoneDetails').toggleClass('highlight');
@@ -733,8 +731,6 @@ $('#myTable tr').on({
   }
 })
 ```
-
-
 
 #### Using `off()`
 
